@@ -7,8 +7,8 @@ def initial_file():
         file.write("Cat On A Hot Tin Roof\nOn The Waterfront\nMonty Python And The Holy Grail\n")
 
 def display_menu():
-    print("\nWelcome To The Movie List Guide!\n",
-          "\n____________________",
+    print("\nWelcome To The Movie List Guide!",
+          "\n_______________________________\n",
           "\n1. Display All Movie Titles",
           "\n2. Add A Movie Title",
           "\n3. Delete A Movie Title",
@@ -23,7 +23,7 @@ def read_movies_from_file(filename):
 
 def display_movies_list(movies):
     if movies:
-        print("\nMovie Titles: ")
+        print("\nMovie Titles: \n")
         for i, movie in enumerate(movies, start = 1):
             print(f"{i}. {movie}")
     else:
@@ -42,12 +42,17 @@ def delete_movie_title(movies):
         if 1 <= title_to_delete <= len(movies):
             removed_movie = movies.pop(title_to_delete - 1 )
             write_movies_to_file(movies)
-            print(f"\n'{remove_movie}' has been deleted.")
+            print(f"\n'{removed_movie}' has been deleted.")
             display_movies_list(movies)
         else:
             print("Movie Title Not Found.")
     except ValueError:
         print("Invalid Entry! Please Try Again.")
+        
+def write_movies_to_file(movies):
+    with open('movies.txt', 'w') as file:
+        for movie in movies:
+            file.write(movie + '\n')
         
 def main():
     movie_file = "movies.txt"
